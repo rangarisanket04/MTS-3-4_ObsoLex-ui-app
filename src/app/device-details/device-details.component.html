@@ -1,0 +1,41 @@
+<!-- Fixed header wrapper -->
+<div class="header-wrapper">
+  <app-header></app-header>
+</div>
+
+<!-- Content container that scrolls -->
+<div class="content-wrapper">
+  <p-card
+    *ngIf="selectedDevice"
+    class="dialog-device-card"
+    [style]="{ 'background-color': '#cce5e5' }"
+  >
+    <div class="card-content">
+      <img
+        [src]="selectedDevice.imageUrl"
+        alt="{{ selectedDevice.name }}"
+        class="device-image"
+      />
+      <div class="device-details">
+        <h3>{{ selectedDevice.name }}</h3>
+        <p>Version: {{ selectedDevice.version }}</p>
+      </div>
+    </div>
+
+    <p-scrollPanel
+      [style]="{
+        width: '100%',
+        height: '100%',
+        marginTop: '1rem',
+        border: '2px solid #cce5e5',
+        borderRadius: '4px'
+      }"
+    >
+      <div
+        style="padding: 1.8rem; white-space: pre-wrap; margin-top: 1rem;"
+      >
+        <app-dashboard [showHeader]="false" [dataFromParent]="dashboardData"></app-dashboard>
+      </div>
+    </p-scrollPanel>
+  </p-card>
+</div>

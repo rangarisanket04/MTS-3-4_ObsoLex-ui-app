@@ -1,0 +1,28 @@
+<p-sidebar
+  [(visible)]="sidebarVisible"
+  position="left"
+  [modal]="true"
+  [baseZIndex]="10000"
+>
+  <h3>Menu</h3>
+  <ul class="menu-list">
+    <li><a href="#">Dashboard</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Device List</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><a href="#" (click)="logout(); $event.preventDefault()">Logout</a></li>
+  </ul>
+</p-sidebar>
+
+<div class="header-bar">
+  <button
+    pButton
+    type="button"
+    icon="pi pi-bars"
+    class="p-button-text p-button-plain white-button"
+    (click)="toggleSidebar()"
+    aria-label="Toggle menu"
+  ></button>
+  <span class="header-title">ObsoLex</span>
+</div>
+

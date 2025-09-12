@@ -1,0 +1,165 @@
+<app-header *ngIf="showHeader"></app-header>
+
+<div class="dashboard-content" style="padding:1rem;">
+
+<div *ngIf="loading" class="loader-overlay">
+  <i class="pi pi-spin pi-spinner loader-icon"></i>
+</div>
+
+<div class="search-refresh-container">
+  <div class="search-wrapper">
+    <i class="pi pi-search search-icon"></i>
+    <input
+      pInputText
+      type="text"
+      placeholder="Search..."
+      (input)="onGlobalFilter($event)"
+      class="search-input"
+    />
+  </div>
+
+  <button
+  pButton
+  type="button"
+  class="p-button-outlined p-button-secondary"
+  (click)="refreshTable()"
+>
+  <i class="pi pi-refresh"></i> Refresh
+</button>
+</div>
+
+  <p-table
+    #table
+    class="custom-enhanced-table"
+    [value]="data"
+    dataKey="id"
+    [expandedRowKeys]="expandedRows"
+    (onRowToggle)="onRowToggle($event)"
+    [responsiveLayout]="'scroll'"
+    [paginator]="true"
+    [rows]="7"
+    [rowsPerPageOptions]="[7, 10, 20]"
+    [globalFilterFields]="['hardwareName', 'topic', 'title']"
+  >
+    <!-- Table Header -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem;"></th>
+        <th pSortableColumn="hardwareName">
+          Hardware Name
+          <p-sortIcon field="hardwareName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="topic">
+          Topic
+          <p-sortIcon field="topic"></p-sortIcon>
+        </th>
+        <th pSortableColumn="title">
+          Title
+          <p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th pSortableColumn="source">
+          Source
+          <p-sortIcon field="source"></p-sortIcon>
+        </th>
+        <th pSortableColumn="publishedAt">
+          Published Date
+          <p-sortIcon field="publishedAt"></p-sortIcon>
+        </th>
+        <!-- <th>Actions</th> -->
+      </tr>
+    </ng-template>
+
+    <!-- Table Body -->
+    <ng-template pTemplate="body" let-item>
+      <tr [ngClass]="getFetchedAtRowClass(item)">
+        <td>
+          <button
+            pButton
+            type="button"
+            class="p-button-text p-button-plain"
+            (click)="toggleRow(item.id)"
+            aria-label="Toggle expand"
+          >
+            <i
+              class="pi"
+              [ngClass]="
+                expandedRows[item.id] ? 'pi-chevron-down' : 'pi-chevron-right'
+              "
+            ></i>
+          </button>
+        </td>
+        <td>{{ item.hardwareName }}</td>
+        <td>{{ item.topic }}</td>
+        <td><strong>{{ item.title }}</strong></td>
+        <td>
+          <img
+            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_42x16dp.png"
+            alt="Google"
+            style="height: 16px; vertical-align: middle; margin-left: 5px;"
+          />
+        </td>
+        <td>{{ item.publishedAt | date: 'short' }}</td>
+        <!-- <td>
+          <div class="action-buttons">
+            <button
+              pButton
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-text p-button-info"
+              (click)="viewProduct(item)"
+            ></button> -->
+
+            <!-- <button
+              pButton
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-text p-button-warning"
+              (click)="editProduct(item)"
+            ></button> -->
+
+            <!-- <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-text p-button-danger"
+              (click)="deleteProduct(item)"
+            ></button>
+          </div>
+        </td> -->
+      </tr>
+    </ng-template>
+
+    <!-- Row Expansion -->
+    <ng-template pTemplate="rowexpansion" let-item>
+      <tr>
+        <td colspan="7">
+          <p-card
+            header="{{ item.title }}"
+            subheader="{{ item.topic }}"
+            class = "full-width-card"
+          >
+            <ng-template pTemplate="content">
+              <div class="p-grid p-nogutter p-align-start">
+                <strong>Content :</strong> 
+                <p>{{ item.summary }}</p>
+                <!-- <strong>Link : </strong>
+                <a [href]="item.link" target="_blank" rel="noopener">{{ item.link }}</a>
+                <br /> -->
+                <strong>Fetched At : </strong> {{ item.fetchedAt | date: 'medium' }}
+                <br />
+                <div class="relevance-section">
+        
+                  <button
+                    pButton
+                    type="button"
+                    label="Get More Info."
+                    class="p-button-sm p-button-primary firmware-button"
+                    (click)="openFirmwareLink(item.link)"
+                    [disabled]="!item.link"
+                  ></button>
+                </div>                
+              </div>
+            </ng-template>
+          </p-card>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

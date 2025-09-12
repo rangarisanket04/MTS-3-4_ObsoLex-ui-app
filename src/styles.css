@@ -1,0 +1,63 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 5px rgba(232, 4, 4, 0.1);
+  } */
+
+/* Make sidebar background fully white with no transparency */
+.p-sidebar {
+    background-color: white !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    filter: none !important;
+    box-shadow: none !important; /* remove shadow if any */
+    z-index: 1500 !important;
+  }
+  
+  /* Remove any opacity or transparency from sidebar children */
+  .p-sidebar * {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+  
+  /* Make overlay (mask) fully transparent or remove it */
+  .p-sidebar-mask {
+    background-color: transparent !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 1400 !important;
+  }
+
+  .animated-logo {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: #198c8c;
+    animation: flicker 2s infinite;
+    user-select: none;
+    cursor: default;
+  }
+  
+  @keyframes flicker {
+    0%, 100% {
+      opacity: 1;
+      text-shadow: 0 0 10px #198c8c;
+    }
+    50% {
+      opacity: 0.5;
+      text-shadow: none;
+    }
+  }
+
+  ::ng-deep .scroll-panel-border {
+    border: 2px solid #198c8c;
+    border-radius: 4px;
+  }
+  
+  
+  
+  

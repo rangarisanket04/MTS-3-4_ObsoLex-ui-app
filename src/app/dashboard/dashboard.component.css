@@ -1,0 +1,175 @@
+.p-button-text {
+  padding: 0 !important;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Red background for low quantity */
+.row-low-quantity {
+  background-color: #ffe5e5 !important;
+}
+
+/* Yellow background for medium quantity */
+.row-medium-quantity {
+  background-color: #fffbe6 !important;
+}
+
+.search-refresh-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* push items to edges */
+  margin-bottom: 1rem;
+}
+
+.search-wrapper {
+  max-width: 250px; /* limit search bar width */
+  position: relative;
+  flex-grow: 1;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+}
+
+.search-input {
+  padding-left: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button.p-button i.pi-refresh {
+  margin-right: 0.5rem; /* adds space between icon and text */
+}
+
+.loader-overlay {
+  position: fixed; /* cover entire viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.8); /* white with slight transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* above everything */
+}
+
+.loader-icon {
+  font-size: 4rem;
+  color: #198c8c;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Actual table */
+.custom-enhanced-table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Table headers */
+.custom-enhanced-table th {
+  background-color: #cce5e5;
+  color: #6c757d;
+  font-weight: 600;
+  padding: 0.75rem;
+  border: none;
+  text-align: left;
+}
+
+/* Table cells */
+.custom-enhanced-table td {
+  padding: 0.75rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Row hover effect */
+.custom-enhanced-table tbody tr:hover {
+  background-color: #f5fafa;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Action buttons alignment */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Rounded buttons with shadows */
+.p-button-rounded {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Row quantity styles already in place, optional glow on hover */
+.row-low-quantity:hover {
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+}
+
+.row-medium-quantity:hover {
+  box-shadow: 0 0 5px rgba(255, 204, 0, 0.2);
+}
+
+.custom-enhanced-table ::ng-deep .p-datatable-table {
+  border: 2px solid #cce5e5; /* Change color and thickness as needed */
+  border-radius: 4px; /* Optional: rounded corners */
+}
+
+.full-width-card {
+  width: 100%;
+}
+
+/* FetchedAt based colors */
+.row-fetched-recent {
+  background-color: #e6f9e6 !important; /* light green */
+}
+
+.row-fetched-medium {
+  background-color: #fff4e5 !important; /* light orange */
+}
+
+.row-fetched-old {
+  background-color: #ffe5e5 !important; /* light red */
+}
+
+.relevance-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left align */
+  gap: 0.5rem; /* spacing between score and button */
+  margin-top: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<div class="login-wrapper">
+    <p-card class="login-card">
+      <!-- <div class="login-header">
+        <i class="pi pi-user admin-icon"></i>
+        <h2>ObsoLex</h2>
+      </div> -->
+
+      <div class="login-header">
+        <h1 class="animated-logo">ObsoLex</h1>
+      </div>
+  
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            pInputText
+            [(ngModel)]="username"
+            placeholder="Enter Username"
+            [ngClass]="{ 'p-invalid': submitted && !username }"
+          />
+        </div>
+  
+        <div class="p-field">
+          <label for="password">Password</label>
+          <p-password
+            id="password"
+            [(ngModel)]="password"
+            placeholder="Enter Password"
+            [feedback]="false"
+            [inputStyle]="{ width: '100%' }"
+            [ngClass]="{ 'p-invalid': submitted && !password }"
+          ></p-password>
+        </div>
+  
+        <p *ngIf="error" class="error-msg">{{ error }}</p>
+  
+        <button
+          pButton
+          label="Login"
+          icon="pi pi-sign-in"
+          class="p-button-rounded custom-login-button"
+          (click)="login()"
+        ></button>
+      </div>
+    </p-card>
+  </div>
+  

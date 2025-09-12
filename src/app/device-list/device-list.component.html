@@ -1,0 +1,39 @@
+<div class="header-wrapper">
+  <app-header></app-header>
+</div>
+
+<div *ngIf="loading" class="loader-overlay">
+  <i class="pi pi-spin pi-spinner loader-icon"></i>
+</div>
+
+<div class="main-content">
+  <div class="device-list-header">
+    <h2>Hardware Device Details</h2>
+  </div>
+  
+  <div class="device-list">
+    <p-card *ngFor="let device of devices" class="device-card">
+      <ng-template pTemplate="header">
+        <img [src]="device.imageUrl" alt="{{device.name}}" class="device-image" />
+      </ng-template>
+  
+      <div class="device-details">
+        <h3>{{ device.name }}</h3>
+        <p>Version: {{ device.version }}</p>
+      </div>
+  
+      <!-- <p-footer> -->
+        <button pButton 
+          type="button" 
+          label="Get Device Details" 
+          (click)="getMoreInfo(device)" 
+          class="get-more-info-button">
+        </button>
+      <!-- </p-footer> -->
+    </p-card>
+  </div>
+</div>
+
+
+
+  
