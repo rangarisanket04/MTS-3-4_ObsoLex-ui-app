@@ -6,11 +6,10 @@
 >
   <h3>Menu</h3>
   <ul class="menu-list">
-    <li><a href="#">Dashboard</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Device List</a></li>
-    <li><a href="#">Settings</a></li>
-    <li><a href="#" (click)="logout(); $event.preventDefault()">Logout</a></li>
+    <li><a routerLink="/dashboard" (click)="sidebarVisible = false">Dashboard</a></li>
+    <li><a routerLink="/device-list" (click)="sidebarVisible = false">Device List</a></li>
+    <li><a routerLink="/device-details" (click)="sidebarVisible = false">Device Details</a></li>
+    <li><a href="#" (click)="logout(); sidebarVisible = false; $event.preventDefault()">Logout</a></li>
   </ul>
 </p-sidebar>
 
@@ -24,5 +23,12 @@
     aria-label="Toggle menu"
   ></button>
   <span class="header-title">ObsoLex</span>
+  <button
+    pButton
+    type="button"
+    icon="pi pi-arrow-left"
+    class="p-button-text p-button-plain white-button back-button"
+    (click)="goBack()"
+    aria-label="Go back"
+  ></button>
 </div>
-

@@ -1,127 +1,113 @@
 .device-list {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: nowrap;
-    justify-content: center;
-    padding: 1rem;
-    overflow-x: auto;
-    height: 30rem
-  }
-  
-  .device-card {
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-  
-    .device-image {
-      width: 200px;
-      height: 150px;
-      object-fit: contain;
-      background-color: #cce5e5;
-      border-radius: 4px;
-      display: block;
-    }
-  
-    .device-details {
-      text-align: center;
-      margin: 1rem 0;
-    }
-  }
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 1rem;
+  overflow-x: auto;
+  height: 30rem;
+}
 
-  .get-more-info-button {
-    margin-left: 0.3rem;
-  }
+.device-card {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #d1e2e2;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(25, 140, 140, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto; /* auto height to shrink to content */
+  max-height: 320px; /* max height to prevent excess */
+}
 
-  .device-list-header {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  
-    h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #198c8c; /* nice blue shade, adjust as needed */
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border-bottom: 3px solid #198c8c;
-      display: inline-block;
-      padding-bottom: 0.25rem;
-    }
-  }
+.device-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(25, 140, 140, 0.25);
+}
 
-
-  /* .dialog-device-card {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  
-    .device-image {
-      width: 150px;
-      height: 100px;
-      object-fit: contain;
-      background-color: #f0f0f0;
-      border-radius: 4px;
-      display: block;
-    }
-  
-    .device-details {
-      text-align: center;
-      margin-top: 1rem;
-    }
-  } */
-
-  .dialog-device-card {
-    width: 100%;
-  
-    .card-content {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  
-    .device-image {
-      width: 150px;
-      height: 100px;
-      object-fit: contain;
-      background-color: #cce5e5;
-      border-radius: 4px;
-      display: block;
-    }
-  
-    .device-details {
-      text-align: left;
-      flex: 1; /* take remaining space */
-    }
-  }
-
-  /* Fix the header at the top */
-.header-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
+.device-card .device-image {
   width: 100%;
-  z-index: 1000; /* make sure it's on top */
-  background-color: white; /* or your header bg color */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 150px;
+  object-fit: contain;
+  background-color: #e0f0f0;
+  padding: 1rem;
+  border-bottom: 1px solid #d1e2e2;
+  border-radius: 12px 12px 0 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.main-content {
-  padding-top: 4rem; /* adjust based on actual header height */
+.device-details {
+  padding: 0.5rem 1rem 0.25rem; /* reduced bottom padding */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 0;
+  min-height: 4.5rem; /* consistent height for title area */
 }
 
+.device-details h3 {
+  font-weight: 700;
+  color: #198c8c;
+  margin: 0 0 0.25rem 0; /* smaller bottom margin */
+  font-size: 1.25rem;
+  min-height: 3rem;
+}
+
+.get-more-info-button {
+  margin: 0.5rem auto 0.75rem; /* reduced margins */
+  width: 90%;
+  background-color: #198c8c;
+  color: white !important;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  height: 2.8rem;
+  display: block;
+  border: none;
+  box-shadow: 0 3px 6px rgba(25, 140, 140, 0.3);
+  cursor: pointer;
+}
+
+.get-more-info-button:hover {
+  background-color: #0f5e5e;
+  box-shadow: 0 5px 12px rgba(15, 94, 94, 0.5);
+}
+
+.device-list-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.device-list-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #198c8c;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid #198c8c;
+  display: inline-block;
+  padding-bottom: 0.25rem;
+}
+
+/* Loader overlay */
 .loader-overlay {
-  position: fixed; /* cover entire viewport */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.8); /* white with slight transparency */
+  background: rgba(255, 255, 255, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000; /* above everything */
+  z-index: 2000;
 }
 
 .loader-icon {
@@ -131,18 +117,22 @@
 }
 
 @keyframes spin {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
+/* Header wrapper fixed on top */
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  
-
-  
-
-  
-
-
-  
-  
-  
-  
+.main-content {
+  padding-top: 4rem; /* adjust based on header height */
+}

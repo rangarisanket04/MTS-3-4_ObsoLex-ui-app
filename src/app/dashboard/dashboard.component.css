@@ -1,175 +1,320 @@
-.p-button-text {
-  padding: 0 !important;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* === ROOT VARIABLES for easy theming === */
+:root {
+  --card-bg: #ffffff;
+  --text-color: #2c3e50;
+  --accent-color: #0078d7;
+  --accent-hover: #005fa3;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --table-header-bg: #cce5e5;
+  --table-hover-bg: #f5fafa;
+  --expanded-row-bg: #f3fbfb;
+  --transition: 0.3s ease-in-out;
+  --font-main: 'Inter', 'Segoe UI', sans-serif;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+/* === GLOBAL STYLES === */
+* {
+  box-sizing: border-box;
 }
 
-/* Red background for low quantity */
-.row-low-quantity {
-  background-color: #ffe5e5 !important;
+body, html {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  color: var(--text-color);
 }
 
-/* Yellow background for medium quantity */
-.row-medium-quantity {
-  background-color: #fffbe6 !important;
+/* === PAGE HEADING === */
+.page-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #198c8c;
+  margin: 1rem auto 2rem auto;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 3px solid #198c8c;
+  padding-bottom: 0.25rem;
+  max-width: 600px;
+  text-align: center;
 }
 
+/* === SEARCH & REFRESH CONTAINER === */
 .search-refresh-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* push items to edges */
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
 }
 
+/* === SEARCH FIELD === */
 .search-wrapper {
-  max-width: 250px; /* limit search bar width */
   position: relative;
-  flex-grow: 1;
+  flex: 1;
+  max-width: 300px;
 }
 
 .search-icon {
   position: absolute;
-  left: 10px;
   top: 50%;
+  left: 12px;
   transform: translateY(-50%);
-  color: #6c757d;
+  color: #888;
+  font-size: 1rem;
 }
 
 .search-input {
-  padding-left: 2rem;
   width: 100%;
-  box-sizing: border-box;
+  padding: 0.5rem 0.75rem 0.5rem 2rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: var(--font-main);
+  transition: border-color 0.3s ease;
+  background-color: #fff;
 }
 
-button.p-button i.pi-refresh {
-  margin-right: 0.5rem; /* adds space between icon and text */
+.search-input:focus {
+  border-color: var(--accent-color);
+  outline: none;
 }
 
-.loader-overlay {
-  position: fixed; /* cover entire viewport */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.8); /* white with slight transparency */
+/* === REFRESH BUTTON === */
+.refresh-button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 2000; /* above everything */
+  gap: 0.5rem;
 }
 
-.loader-icon {
-  font-size: 4rem;
-  color: #198c8c;
-  animation: spin 1s linear infinite;
+.refresh-button:hover {
+  background-color: var(--accent-hover);
 }
 
-@keyframes spin {
-  100% { transform: rotate(360deg); }
+.refresh-button i {
+  font-size: 1.1rem;
 }
 
-/* Actual table */
-.custom-enhanced-table table {
-  border-collapse: collapse;
+/* === TABLE STYLES === */
+.custom-enhanced-table {
   width: 100%;
+  overflow-x: auto;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-/* Table headers */
+.custom-enhanced-table table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  font-family: var(--font-main);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
 .custom-enhanced-table th {
-  background-color: #cce5e5;
-  color: #6c757d;
+  background-color: var(--table-header-bg);
+  color: #2f4f4f;
   font-weight: 600;
   padding: 0.75rem;
-  border: none;
   text-align: left;
+  font-size: 0.95rem;
+  border-bottom: 2px solid #bcdcdc;
 }
 
-/* Table cells */
 .custom-enhanced-table td {
   padding: 0.75rem;
+  font-size: 0.95rem;
   border-top: 1px solid #e0e0e0;
+  color: #333;
+  vertical-align: top;
 }
 
-/* Row hover effect */
+/* === Specific TD Styling After Dropdown === */
+td.hardware-name {
+  font-weight: 600;
+  color: #0a3d62;
+}
+
+td.topic {
+  font-style: italic;
+  color: #2c3e50;
+}
+
+td.title {
+  font-weight: bold;
+  color: #198c8c;
+}
+
+td.source {
+  color: #7f8c8d;
+  font-size: 0.92rem;
+}
+
+td.date {
+  color: #555;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* === HOVER + TRANSITION === */
+.custom-enhanced-table tbody tr {
+  transition: background-color var(--transition);
+}
+
 .custom-enhanced-table tbody tr:hover {
-  background-color: #f5fafa;
-  transition: background-color 0.3s ease;
+  background-color: var(--table-hover-bg);
   cursor: pointer;
 }
 
-/* Action buttons alignment */
-.action-buttons {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+/* === RESPONSIVE TABLE FOR MOBILE === */
+@media (max-width: 768px) {
+  .custom-enhanced-table {
+    padding: 0 0.5rem;
+  }
+
+  .custom-enhanced-table table,
+  .custom-enhanced-table thead,
+  .custom-enhanced-table tbody,
+  .custom-enhanced-table th,
+  .custom-enhanced-table td,
+  .custom-enhanced-table tr {
+    display: block;
+  }
+
+  .custom-enhanced-table th {
+    display: none;
+  }
+
+  .custom-enhanced-table td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .custom-enhanced-table td::before {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #666;
+    content: attr(data-label);
+  }
 }
 
-/* Rounded buttons with shadows */
-.p-button-rounded {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* === EXPAND / DROPDOWN ICON === */
+button[aria-label="Toggle expand"] i.pi {
+  transition: transform 0.3s ease;
 }
 
-/* Row quantity styles already in place, optional glow on hover */
-.row-low-quantity:hover {
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+button[aria-label="Toggle expand"] i.pi-chevron-down {
+  transform: rotate(180deg);
 }
 
-.row-medium-quantity:hover {
-  box-shadow: 0 0 5px rgba(255, 204, 0, 0.2);
+/* === EXPANDED ROW STYLES === */
+.p-table .p-row-expanded {
+  background-color: var(--expanded-row-bg) !important;
 }
 
-.custom-enhanced-table ::ng-deep .p-datatable-table {
-  border: 2px solid #cce5e5; /* Change color and thickness as needed */
-  border-radius: 4px; /* Optional: rounded corners */
+p-card.full-width-card {
+  animation: fadeSlideIn 0.4s ease-in-out;
+  background-color: #f9fcfc;
+  border: 1px solid #cce5e5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  position: relative;
 }
 
-.full-width-card {
-  width: 100%;
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* FetchedAt based colors */
-.row-fetched-recent {
-  background-color: #e6f9e6 !important; /* light green */
+/* Optional pulse on expand */
+p-card.full-width-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(198,236,236,0.15) 10%, transparent 70%);
+  opacity: 0;
+  animation: pulseExpand 0.6s ease forwards;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
-.row-fetched-medium {
-  background-color: #fff4e5 !important; /* light orange */
+@keyframes pulseExpand {
+  0% {
+    opacity: 1;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
 }
 
-.row-fetched-old {
-  background-color: #ffe5e5 !important; /* light red */
+/* === DEVICE IMAGE (No Hover Effect) === */
+.device-image {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-.relevance-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* left align */
-  gap: 0.5rem; /* spacing between score and button */
-  margin-top: 0.5rem;
+.device-image:hover {
+  filter: none !important;
+  transform: none !important;
+  cursor: default !important;
+  box-shadow: none !important;
 }
 
+/* === TABLE HEADER STYLING === */
+.custom-enhanced-table th {
+  background-color: var(--table-header-bg);
+  color: #2f4f4f;
+  font-weight: 700;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 1rem;
+  border-bottom: 3px solid #198c8c;
+  box-shadow: inset 0 -3px 0 #198c8c;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
+/* Slight highlight on hover */
+.custom-enhanced-table th:hover {
+  background-color: #b0d8d8;
+  color: var(--accent-color);
+  cursor: default;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Add subtle letter-spacing for readability */
+.custom-enhanced-table th {
+  letter-spacing: 0.05em;
+}

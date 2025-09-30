@@ -15,6 +15,14 @@ interface Device {
   version: string;
   imageUrl: string;
   description: string;
+  expiryDate?: string;
+  manufacturer?: string;
+  lastUpdated?: string;
+  deviceCategory?: string;
+  plannedUpdates?: {
+    updatesPlanned: boolean;
+    details: string;
+  };
 }
 
 @Component({
@@ -36,7 +44,6 @@ export class DeviceListComponent {
   loading: boolean = false;
   devices: Device[] = [];
   selectedDevice?: Device;
-  
 
   constructor(
     private router: Router,
@@ -50,7 +57,12 @@ export class DeviceListComponent {
           name: item.hardwareName,
           version: item.pciPts?.version || 'N/A',
           imageUrl: this.getDeviceImage(item.hardwareName),
-          description: item.additionalNotes || 'No details available'
+          description: item.additionalNotes || 'No details available',
+          expiryDate: item.expiryDate,
+          manufacturer: item.manufacturer,
+          lastUpdated: item.lastUpdated,
+          plannedUpdates: item.plannedUpdates,
+          deviceCategory: item.deviceCategory,
         }));
       },
       error: (err) => {
@@ -72,24 +84,24 @@ export class DeviceListComponent {
 
   getMoreInfo(device: Device) {
     this.loading = true;
-  
+
     const hardwareName = device.name; // map it
     const encodedName = encodeURIComponent(hardwareName);
     const limit = 20;
-  
+
     console.log("Formatted Hardware Name:", hardwareName);
-  
+
     // Step 1: POST to initiate scan
     this.dashboardService.scanDevice([device.name]).subscribe({
       next: (scanCount: number) => {  // scanCount is the int returned by POST
         console.log(`Scan API completed. ${scanCount} records updated.`);
-    
+
         // Use the count as the limit in GET API
         this.dashboardService.getDashboardData(hardwareName, scanCount).subscribe({
           next: (newsData) => {
             console.log('News data received:', newsData);
             this.loading = false;
-    
+
             this.router.navigate(['/device-details'], {
               state: {
                 selectedDevice: device,
@@ -108,7 +120,7 @@ export class DeviceListComponent {
         console.error('Error calling scan API:', err);
       }
     });
-    
+
   }
- 
+
 }

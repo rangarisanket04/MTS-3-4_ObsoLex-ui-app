@@ -1,27 +1,32 @@
 import { Component } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
-import { Router } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [SidebarModule, ButtonModule],
+  imports: [CommonModule, SidebarModule, ButtonModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private router: Router) {}
   sidebarVisible = false;
+
+  constructor(private router: Router, private location: Location) {}
 
   toggleSidebar() {
     this.sidebarVisible = !this.sidebarVisible;
   }
 
-  logout(): void {
-    // Clear any stored user data if needed
-    localStorage.clear(); // Optional: if you’re storing login info
-    this.router.navigate(['/login']);
+  goBack() {
+    this.location.back();
   }
 
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

@@ -10,23 +10,38 @@
   <div class="device-list-header">
     <h2>Hardware Device Details</h2>
   </div>
-  
+
   <div class="device-list">
     <p-card *ngFor="let device of devices" class="device-card">
       <ng-template pTemplate="header">
         <img [src]="device.imageUrl" alt="{{device.name}}" class="device-image" />
       </ng-template>
-  
+
       <div class="device-details">
         <h3>{{ device.name }}</h3>
-        <p>Version: {{ device.version }}</p>
+        <!-- <p *ngIf="device.manufacturer">
+          Manufacturer: {{ device.manufacturer }}
+        </p>
+
+        <p *ngIf="device.deviceCategory">
+          Device Category: {{ device.deviceCategory }}
+        </p>
+
+        <p *ngIf="device.lastUpdated">
+          Last Updated: {{ device.lastUpdated | date:'longDate' }}
+        </p>
+
+        <div *ngIf="device.plannedUpdates?.updatesPlanned">
+          <strong>Planned Updates:</strong>
+          <p>{{ device.plannedUpdates }}</p>
+        </div> -->
       </div>
-  
+
       <!-- <p-footer> -->
-        <button pButton 
-          type="button" 
-          label="Get Device Details" 
-          (click)="getMoreInfo(device)" 
+        <button pButton
+          type="button"
+          label="Get Device Details"
+          (click)="getMoreInfo(device)"
           class="get-more-info-button">
         </button>
       <!-- </p-footer> -->
@@ -36,4 +51,4 @@
 
 
 
-  
+

@@ -1,47 +1,136 @@
-/* Fix the header at the top */
+:root {
+  --card-bg: #ffffff; /* Card background set to white */
+  --text-color: #45502c;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --transition: 0.3s ease-in-out;
+  --font-main: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* === Page and Font Setup === */
+body, html {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+}
+
+/* === Header and Layout Wrappers === */
 .header-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* make sure it's on top */
-    background-color: white; /* or your header bg color */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  /* Give space below the fixed header for content */
-  .content-wrapper {
-    margin-top: 50px; /* Adjust this height to header height */
-    padding: 1rem; /* Optional padding around content */
-    height: calc(100vh - 70px); /* full viewport height minus header */
-    overflow-y: auto; /* Enable vertical scrolling inside content */
-  }
-  
-  /* Card full width */
-  .dialog-device-card {
-    width: 100%;
-  }
-  
-  /* Flex layout for card content */
+  background-color: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.content-wrapper {
+  padding: 2rem 1rem;
+  background-color: #ffffff;
+}
+
+/* === Card Component === */
+.dialog-device-card {
+  background-color: var(--card-bg) !important; /* Explicit white background */
+  border-radius: 16px;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  padding: 0;
+  margin: 0 auto;
+
+  /* Animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.5s ease forwards;
+  transition: box-shadow 0.3s ease;
+}
+
+.dialog-device-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* === Card Content Layout === */
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: var(--card-bg); /* White background */
+}
+
+/* === Device Image === */
+.device-image {
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+
+  /* Animation */
+  opacity: 0;
+  transform: scale(0.95);
+  animation: imageFadeZoom 0.8s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* === Device Details === */
+.device-details {
+  flex: 1;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--card-bg); /* Make sure device details area is white */
+
+  /* Animation */
+  opacity: 0;
+  animation: fadeInText 0.8s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.device-details h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.device-details p {
+  margin: 0.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
   .card-content {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    padding: 24px;
   }
-  
-  /* Device image style */
+
   .device-image {
-    width: 150px;
-    height: 100px;
-    object-fit: contain;
-    background-color: #cce5e5;
-    border-radius: 4px;
-    display: block;
+    width: 80%;
+    height: auto;
+    margin-bottom: 20px;
   }
-  
-  /* Text alignment and flex for device details */
-  .device-details {
-    text-align: left;
-    flex: 1;
+}
+
+/* === Animations === */
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+@keyframes imageFadeZoom {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+  }
+}

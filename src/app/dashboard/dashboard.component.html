@@ -2,6 +2,8 @@
 
 <div class="dashboard-content" style="padding:1rem;">
 
+  <h1 class="page-heading">Hardware Obsolescence News</h1>
+
 <div *ngIf="loading" class="loader-overlay">
   <i class="pi pi-spin pi-spinner loader-icon"></i>
 </div>
@@ -65,7 +67,6 @@
           Published Date
           <p-sortIcon field="publishedAt"></p-sortIcon>
         </th>
-        <!-- <th>Actions</th> -->
       </tr>
     </ng-template>
 
@@ -91,38 +92,8 @@
         <td>{{ item.hardwareName }}</td>
         <td>{{ item.topic }}</td>
         <td><strong>{{ item.title }}</strong></td>
-        <td>
-          <img
-            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_42x16dp.png"
-            alt="Google"
-            style="height: 16px; vertical-align: middle; margin-left: 5px;"
-          />
-        </td>
+        <td> {{item.source}} </td>
         <td>{{ item.publishedAt | date: 'short' }}</td>
-        <!-- <td>
-          <div class="action-buttons">
-            <button
-              pButton
-              icon="pi pi-eye"
-              class="p-button-rounded p-button-text p-button-info"
-              (click)="viewProduct(item)"
-            ></button> -->
-
-            <!-- <button
-              pButton
-              icon="pi pi-pencil"
-              class="p-button-rounded p-button-text p-button-warning"
-              (click)="editProduct(item)"
-            ></button> -->
-
-            <!-- <button
-              pButton
-              icon="pi pi-trash"
-              class="p-button-rounded p-button-text p-button-danger"
-              (click)="deleteProduct(item)"
-            ></button>
-          </div>
-        </td> -->
       </tr>
     </ng-template>
 
@@ -137,15 +108,14 @@
           >
             <ng-template pTemplate="content">
               <div class="p-grid p-nogutter p-align-start">
-                <strong>Content :</strong> 
+                <strong>Content :</strong>
                 <p>{{ item.summary }}</p>
-                <!-- <strong>Link : </strong>
-                <a [href]="item.link" target="_blank" rel="noopener">{{ item.link }}</a>
-                <br /> -->
+
                 <strong>Fetched At : </strong> {{ item.fetchedAt | date: 'medium' }}
                 <br />
+                <br/>
                 <div class="relevance-section">
-        
+
                   <button
                     pButton
                     type="button"
@@ -154,7 +124,7 @@
                     (click)="openFirmwareLink(item.link)"
                     [disabled]="!item.link"
                   ></button>
-                </div>                
+                </div>
               </div>
             </ng-template>
           </p-card>
