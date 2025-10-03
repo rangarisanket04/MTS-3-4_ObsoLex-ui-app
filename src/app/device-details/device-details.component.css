@@ -100,6 +100,29 @@ body, html {
   color: var(--text-color);
 }
 
+.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;   /* Only 2 lines shown initially */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#toggleNotes:checked ~ .collapsed {
+  -webkit-line-clamp: unset; /* Show full text */
+}
+
+.toggle-link::after {
+  content: " Show more";
+  color: blue;
+  cursor: pointer;
+}
+
+#toggleNotes:checked ~ .toggle-link::after {
+  content: " Show less";
+}
+
+
 /* === Responsive Design === */
 @media (max-width: 768px) {
   .card-content {

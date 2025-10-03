@@ -66,7 +66,7 @@ export class DeviceListComponent {
           expiryDate: item.expiryDate,
           manufacturer: item.manufacturer,
           lastUpdated: item.lastUpdated,
-          plannedUpdates: item.plannedUpdates,
+          additionalNotes: item.additionalNotes,
           deviceCategory: item.deviceCategory,
           endOfLifeAnnouncement: item.endOfLifeAnnouncement ?? false,
           endOfSalesDate: item.endOfLifeDates?.endOfSalesDate || 'N/A',

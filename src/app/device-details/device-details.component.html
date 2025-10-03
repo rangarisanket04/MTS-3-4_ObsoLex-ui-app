@@ -33,10 +33,6 @@
         <p *ngIf="selectedDevice.lastUpdated">
           <strong>Last Updated:</strong> {{ selectedDevice.lastUpdated | date:'longDate' }}
         </p>
-        <br/>
-        <p *ngIf="selectedDevice.plannedUpdates?.updatesPlanned">
-          <strong>Planned Updates:</strong> {{ selectedDevice.plannedUpdates.updatesPlanned }}
-        </p>
 
           <p *ngIf="selectedDevice.endOfLifeAnnouncement">
           <strong>End Of Life Announcement:</strong>
@@ -62,6 +58,23 @@
           <strong>New Software Releases:</strong>
           {{ selectedDevice.newSoftwareRelease }}
         </p>
+
+        <p *ngIf="selectedDevice.additionalNotes">
+          <strong>Details:</strong>
+          <input type="checkbox" id="toggleNotes" hidden>
+        
+          <span class="collapsed">
+            {{ selectedDevice.additionalNotes }}
+          </span>
+        
+          <label for="toggleNotes" class="toggle-link"></label>
+        </p>
+        
+        
+
+        
+        
+        
 
       </div>
     </div>
