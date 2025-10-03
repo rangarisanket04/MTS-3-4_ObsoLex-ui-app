@@ -34,14 +34,38 @@
           <strong>Last Updated:</strong> {{ selectedDevice.lastUpdated | date:'longDate' }}
         </p>
         <br/>
-        <div *ngIf="selectedDevice.plannedUpdates?.updatesPlanned">
-          <strong>Planned Updates:</strong>
-          <p>{{ selectedDevice.plannedUpdates.details }}</p>
-        </div>
+        <p *ngIf="selectedDevice.plannedUpdates?.updatesPlanned">
+          <strong>Planned Updates:</strong> {{ selectedDevice.plannedUpdates.updatesPlanned }}
+        </p>
+
+          <p *ngIf="selectedDevice.endOfLifeAnnouncement">
+          <strong>End Of Life Announcement:</strong>
+          {{ selectedDevice.endOfLifeAnnouncement !== undefined ? (selectedDevice.endOfLifeAnnouncement ? 'Yes' : 'No') : 'N/A' }}
+        </p>
+
+        <p *ngIf="selectedDevice.endOfSalesDate">
+          <strong>End Of Sales Date:</strong>
+          {{ selectedDevice.endOfSalesDate }}
+        </p>
+
+        <p *ngIf="selectedDevice.plannedReleaseDate">
+          <strong>Planned Release Date:</strong>
+          {{ selectedDevice.plannedReleaseDate }}
+        </p>
+
+        <p *ngIf="selectedDevice.newVersionPlanned">
+          <strong>New Version Planned:</strong>
+          {{ selectedDevice.newVersionPlanned }}
+        </p>
+
+        <p *ngIf="selectedDevice.newSoftwareRelease">
+          <strong>New Software Releases:</strong>
+          {{ selectedDevice.newSoftwareRelease }}
+        </p>
+
       </div>
     </div>
-      <div
-        style="padding: 1.8rem; white-space: pre-wrap; margin-top: 1rem;">
+      <div>
         <app-dashboard [showHeader]="false" [dataFromParent]="dashboardData"></app-dashboard>
       </div>
   </p-card>

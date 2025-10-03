@@ -23,6 +23,11 @@ interface Device {
     updatesPlanned: boolean;
     details: string;
   };
+  endOfLifeAnnouncement?: boolean;
+  endOfSalesDate?: string;
+  newVersionPlanned?: boolean;
+  plannedReleaseDate?: string;
+  newSoftwareReleases?: boolean;
 }
 
 @Component({
@@ -63,6 +68,11 @@ export class DeviceListComponent {
           lastUpdated: item.lastUpdated,
           plannedUpdates: item.plannedUpdates,
           deviceCategory: item.deviceCategory,
+          endOfLifeAnnouncement: item.endOfLifeAnnouncement ?? false,
+          endOfSalesDate: item.endOfLifeDates?.endOfSalesDate || 'N/A',
+          newVersionPlanned: typeof item.newVersionPlanned === 'boolean' ? item.newVersionPlanned : undefined,
+          plannedReleaseDate: item.plannedReleaseDate || 'N/A',
+          newSoftwareReleases: typeof item.newSoftwareReleases === 'boolean' ? item.newSoftwareReleases : undefined
         }));
       },
       error: (err) => {
